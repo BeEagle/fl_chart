@@ -642,7 +642,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData>
       return;
     }
 
-    clearAroundBorderPaint.strokeWidth = barPaint.strokeWidth / 2;
+    clearAroundBorderPaint.strokeWidth = viewSize.width;
     final double halfStrokeWidth = clearAroundBorderPaint.strokeWidth / 2;
     final Rect rect = Rect.fromLTRB(
       getLeftOffsetDrawSize() - halfStrokeWidth,
