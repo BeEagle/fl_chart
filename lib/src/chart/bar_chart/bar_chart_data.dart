@@ -14,28 +14,39 @@ import 'package:flutter/material.dart';
 /// It holds data needed to draw a bar chart,
 /// including bar lines, colors, spaces, touches, ...
 class BarChartData extends AxisChartData {
+
+  /// [BarChart] draws [barGroups] that each of them contains a list of [BarChartRodData].
   final List<BarChartGroupData> barGroups;
+
+  /// apply space between the [barGroups].
   final double groupsSpace;
+
+  /// arrange the [barGroups], see [BarChartAlignment].
   final BarChartAlignment alignment;
+
+  /// titles on left, top, right, bottom axis for each number.
   final FlTitlesData titlesData;
+
+  /// handles touch behaviors and responses.
   final BarTouchData barTouchData;
 
   /// [BarChart] draws some [barGroups] and aligns them using [alignment],
   /// if [alignment] is [BarChartAlignment.center], you can define [groupsSpace]
   /// to apply space between them.
   ///
-  /// It draws some titles on x and y axis for each number, you can modify [titlesData]
-  /// to have your custom titles, also you can define a larger title for each axis
-  /// using [axisTitleData], you can restrict the y axis using [maxY] value,
+  /// It draws some titles on left, top, right, bottom sides per each axis number,
+  /// you can modify [titlesData] to have your custom titles,
+  /// also you can define the axis title (one text per axis) for each side
+  /// using [axisTitleData], you can restrict the y axis using [maxY] value.
   ///
   /// It draws a color as a background behind everything you can set it using [backgroundColor],
   /// then a grid over it, you can customize it using [gridData],
   /// and it draws 4 borders around your chart, you can customize it using [borderData]
-  /// also it draws border lines
+  /// also it draws border lines.
   ///
-  /// you can annotate some regions with a highlight color using [rangeAnnotations]
+  /// You can annotate some regions with a highlight color using [rangeAnnotations].
   ///
-  /// you can modify [barTouchData] to customize touch behaviors and responses.
+  /// You can modify [barTouchData] to customize touch behaviors and responses.
   BarChartData({
     this.barGroups = const [],
     this.groupsSpace = 16,
