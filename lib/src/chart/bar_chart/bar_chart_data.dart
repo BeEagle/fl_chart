@@ -9,12 +9,10 @@ import 'package:fl_chart/src/utils/lerp.dart';
 import 'package:fl_chart/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-/// This class is responsible to holds data to draw Bar Chart
-/// [barGroups] holds list of bar groups to show together,
-/// [groupsSpace] space between groups, it applies only when the [alignment] is [Alignment.center],
-/// [axisTitleData] to show a description of each axis
-/// [alignment] is the alignment of showing groups,
-/// [titlesData] holds data about drawing left and bottom titles.
+/// [BarChart] needs this class to render itself.
+///
+/// It holds data needed to draw a bar chart,
+/// including bar lines, colors, spaces, touches, ...
 class BarChartData extends AxisChartData {
   final List<BarChartGroupData> barGroups;
   final double groupsSpace;
@@ -22,24 +20,40 @@ class BarChartData extends AxisChartData {
   final FlTitlesData titlesData;
   final BarTouchData barTouchData;
 
+  /// [BarChart] draws some [barGroups] and aligns them using [alignment],
+  /// if [alignment] is [BarChartAlignment.center], you can define [groupsSpace]
+  /// to apply space between them.
+  ///
+  /// It draws some titles on x and y axis for each number, you can modify [titlesData]
+  /// to have your custom titles, also you can define a larger title for each axis
+  /// using [axisTitleData], you can restrict the y axis using [maxY] value,
+  ///
+  /// It draws a color as a background behind everything you can set it using [backgroundColor],
+  /// then a grid over it, you can customize it using [gridData],
+  /// and it draws 4 borders around your chart, you can customize it using [borderData]
+  /// also it draws border lines
+  ///
+  /// you can annotate some regions with a highlight color using [rangeAnnotations]
+  ///
+  /// you can modify [barTouchData] to customize touch behaviors and responses.
   BarChartData({
     this.barGroups = const [],
     this.groupsSpace = 16,
     this.alignment = BarChartAlignment.spaceBetween,
     this.titlesData = const FlTitlesData(),
     this.barTouchData = const BarTouchData(),
+    FlAxisTitleData axisTitleData = const FlAxisTitleData(),
+    double maxY,
     FlGridData gridData = const FlGridData(
       show: false,
     ),
     FlBorderData borderData,
-    FlAxisTitleData axisTitleData = const FlAxisTitleData(),
     RangeAnnotations rangeAnnotations = const RangeAnnotations(),
-    double maxY,
     Color backgroundColor,
   }) : super(
+    axisTitleData: axisTitleData,
           gridData: gridData,
           borderData: borderData,
-          axisTitleData: axisTitleData,
           rangeAnnotations: rangeAnnotations,
           backgroundColor: backgroundColor,
           touchData: barTouchData,
